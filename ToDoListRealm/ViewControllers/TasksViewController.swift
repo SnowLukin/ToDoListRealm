@@ -19,8 +19,8 @@ class TasksViewController: UITableViewController {
         super.viewDidLoad()
         title = taskList.name
         
-        currentTasks = taskList.tasks.filter("isComplete = false")
-        completedTasks = taskList.tasks.filter("isComplete = true")
+        currentTasks = taskList.tasks.filter("isCompleted = false")
+        completedTasks = taskList.tasks.filter("isCompleted = true")
         
         let addButton = UIBarButtonItem(
             barButtonSystemItem: .add,
@@ -32,12 +32,6 @@ class TasksViewController: UITableViewController {
     
     @objc private func addButtonPressed() {
         showAlert()
-    }
-    
-    private func animateReload() {
-        UIView.transition(with: tableView, duration: 0.35, options: .transitionCrossDissolve) {
-            self.tableView.reloadData()
-        }
     }
 }
 
@@ -83,8 +77,16 @@ extension TasksViewController {
         
         let doneAction = UIContextualAction(style: .normal, title: "Done") { [self] _, _, isDone in
             StorageManager.shared.done(task)
+            let indexPathForCurrentTask = IndexPath(row: self.currentTasks.index(of: task) ?? 0,
+                                                    section: 0)
+            let indexPathForCompletedTask = IndexPath(row: self.completedTasks.index(of: task) ?? 0,
+                                                      section: 1)
+            let destinationIndexRow = indexPath.section == 0
+            ? indexPathForCompletedTask
+            : indexPathForCurrentTask
             
-            self.animateReload()
+            tableView.moveRow(at: indexPath, to: destinationIndexRow)
+            
             isDone(true)
         }
         

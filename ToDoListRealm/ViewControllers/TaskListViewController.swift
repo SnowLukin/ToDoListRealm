@@ -11,13 +11,10 @@ import RealmSwift
 class TaskListViewController: UITableViewController {
     
     private var taskLists: Results<TaskList>!
-    private var filteredTaskLists: Results<TaskList>!
-    private var isSorted = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         taskLists = StorageManager.shared.realm.objects(TaskList.self)
-        filteredTaskLists = StorageManager.shared.realm.objects(TaskList.self).sorted(byKeyPath: "name", ascending: true)
         let addButton = UIBarButtonItem(
             barButtonSystemItem: .add,
             target: self,
@@ -36,14 +33,12 @@ class TaskListViewController: UITableViewController {
     }
 
     @IBAction func sortingList(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            isSorted = false
-            tableView.reloadData()
-        default:
-            isSorted = true
-            tableView.reloadData()
-        }
+        
+        taskLists = sender.selectedSegmentIndex == 0
+        ? taskLists.sorted(byKeyPath: "date")
+        : taskLists.sorted(byKeyPath: "name")
+        
+        tableView.reloadData()
     }
     
     @objc private func  addButtonPressed() {
@@ -69,20 +64,10 @@ extension TaskListViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskListCell", for: indexPath) as! TaskListCell
-        let taskList = isSorted ? filteredTaskLists[indexPath.row] : taskLists[indexPath.row]
-        let uncompletedTasks = taskList.tasks.filter({ !$0.isComplete })
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskListCell", for: indexPath)
+        let taskList = taskLists[indexPath.row]
+        cell.configure(with: taskList)
         
-        cell.titleLabel.text = taskList.name
-        
-        if uncompletedTasks.count == 0 {
-            cell.secondaryText.isHidden = true
-            cell.checkmarkImage.isHidden = false
-        } else {
-            cell.secondaryText.isHidden = false
-            cell.secondaryText.text = "\(uncompletedTasks.count)"
-            cell.checkmarkImage.isHidden = true
-        }
         return cell
     }
     

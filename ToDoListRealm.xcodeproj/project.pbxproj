@@ -19,6 +19,7 @@
 		D749959127AAD0E3006F3172 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D749959027AAD0E3006F3172 /* DataManager.swift */; };
 		D749959327AAD0F7006F3172 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D749959227AAD0F7006F3172 /* StorageManager.swift */; };
 		D749959627AAD149006F3172 /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D749959527AAD149006F3172 /* TaskList.swift */; };
+		D749959C27AAD43A006F3172 /* Extension + UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D749959B27AAD43A006F3172 /* Extension + UITableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		D749959027AAD0E3006F3172 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		D749959227AAD0F7006F3172 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		D749959527AAD149006F3172 /* TaskList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskList.swift; sourceTree = "<group>"; };
+		D749959B27AAD43A006F3172 /* Extension + UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Extension + UITableViewCell.swift"; path = "../../../../RealmToDoApp/RealmToDoApp/ViewControllers/Extenstions/Extension + UITableViewCell.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +60,6 @@
 				7F047BB2FECC8005E4513573 /* Pods-ToDoListRealm.debug.xcconfig */,
 				8333A4556A12F4CF340AA47B /* Pods-ToDoListRealm.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -123,6 +124,7 @@
 		D749958927AACF96006F3172 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D749959A27AAD419006F3172 /* Extentions */,
 				D749958B27AAD08A006F3172 /* TaskListViewController.swift */,
 				D749958D27AAD0B3006F3172 /* TasksViewController.swift */,
 				D749957727AACF3C006F3172 /* UIAlertController.swift */,
@@ -153,6 +155,14 @@
 				D749959527AAD149006F3172 /* TaskList.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D749959A27AAD419006F3172 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				D749959B27AAD43A006F3172 /* Extension + UITableViewCell.swift */,
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +286,7 @@
 				D749957827AACF3C006F3172 /* UIAlertController.swift in Sources */,
 				D749958C27AAD08A006F3172 /* TaskListViewController.swift in Sources */,
 				D749959627AAD149006F3172 /* TaskList.swift in Sources */,
+				D749959C27AAD43A006F3172 /* Extension + UITableViewCell.swift in Sources */,
 				D749957427AACF3C006F3172 /* AppDelegate.swift in Sources */,
 				D749957627AACF3C006F3172 /* SceneDelegate.swift in Sources */,
 			);
